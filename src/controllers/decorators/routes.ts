@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { Methods } from "./Methods";
-
+import { Methods } from "./Methods"; // enum
+import { MetadataKeys } from "./MetadataKeys"; // enum
 // We Repeat DRY principles
 // https://github.com/kaoengine/kao-pragmatic-progamming#5-your-knowledge-portfolio
 // please check our github repo, our Team has summarized some contents of this book Programatic Programmer
@@ -27,8 +27,8 @@ function routeBinder(method: string) {
   return function (path: string) {
     // path = '/login'
     return function (target: any, key: string, desc: PropertyDescriptor) {
-      Reflect.defineMetadata("path", path, target, key); // key === 'getLogin'
-      Reflect.defineMetadata("method", method, target, key);
+      Reflect.defineMetadata(MetadataKeys.path, path, target, key); // key === 'getLogin'
+      Reflect.defineMetadata(MetadataKeys.method, method, target, key);
       // this indicate the method that we want this router handler to assign into router
     };
   };
