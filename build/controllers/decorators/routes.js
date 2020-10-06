@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.patch = exports.del = exports.post = exports.put = exports.get = void 0;
 require("reflect-metadata");
-var Methods_1 = require("./Methods");
+var Methods_1 = require("./Methods"); // enum
+var MetadataKeys_1 = require("./MetadataKeys"); // enum
 // We Repeat DRY principles
 // https://github.com/kaoengine/kao-pragmatic-progamming#5-your-knowledge-portfolio
 // please check our github repo, our Team has summarized some contents of this book Programatic Programmer
@@ -26,8 +27,8 @@ function routeBinder(method) {
     return function (path) {
         // path = '/login'
         return function (target, key, desc) {
-            Reflect.defineMetadata("path", path, target, key); // key === 'getLogin'
-            Reflect.defineMetadata("method", method, target, key);
+            Reflect.defineMetadata(MetadataKeys_1.MetadataKeys.path, path, target, key); // key === 'getLogin'
+            Reflect.defineMetadata(MetadataKeys_1.MetadataKeys.method, method, target, key);
             // this indicate the method that we want this router handler to assign into router
         };
     };
