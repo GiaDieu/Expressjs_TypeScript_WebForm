@@ -8,10 +8,15 @@ function controller(routePrefix) {
         var router = AppRouter_1.AppRouter.getInstance();
         for (var key in target.prototype) {
             // key === 'getLogin'
-            var routeHandler = target.prototype[key];
-            var path = Reflect.getMetadata("path", target.prototype, key);
+            var routeHandler = target.prototype[key]; // example: 'getLogin' method
+            var path = Reflect.getMetadata("path", target.prototype, key); // '/login'
+            var method = Reflect.getMetadata("method", target.prototype, key);
+            // Look at here how flexible, in theory, the method variable will be 'get','put','post' and so on...
             if (path) {
-                router.get("" + routePrefix + path, routeHandler);
+                // refactoring a small piece of code here
+                // router.get(`${routePrefix}${path}`, routeHandler);
+                // router.get === router[method] == method == 'get'
+                router[method]("" + routePrefix + path, routeHandler);
             }
         }
     };

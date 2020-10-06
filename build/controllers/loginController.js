@@ -17,7 +17,8 @@ var LoginController = /** @class */ (function () {
         res.send("\n          <form method=\"POST\">\n              <div>\n                  <label>Email</label>\n                  <input name=\"email\" type=\"email\" />\n              </div>\n              <div>\n                  <label>Password</label>\n                  <input name=\"password\" type=\"password\" />\n              </div>\n              <button>Submit</button>\n          </form>\n        ");
     };
     __decorate([
-        decorators_1.get("/login"),
+        decorators_1.get("/login") //(alias) get(path: string): (target: any, key: string, desc: PropertyDescriptor) => void
+        ,
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", void 0)

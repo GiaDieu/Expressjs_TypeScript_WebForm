@@ -3,7 +3,7 @@ import { get, controller } from "./decorators";
 
 @controller("/auth")
 class LoginController {
-  @get("/login")
+  @get("/login") //(alias) get(path: string): (target: any, key: string, desc: PropertyDescriptor) => void
   getLogin(req: Request, res: Response): void {
     res.send(`
           <form method="POST">
