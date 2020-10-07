@@ -4,29 +4,15 @@ exports.patch = exports.del = exports.post = exports.put = exports.get = void 0;
 require("reflect-metadata");
 var Methods_1 = require("./Methods"); // enum
 var MetadataKeys_1 = require("./MetadataKeys"); // enum
-// We Repeat DRY principles
-// https://github.com/kaoengine/kao-pragmatic-progamming#5-your-knowledge-portfolio
-// please check our github repo, our Team has summarized some contents of this book Programatic Programmer
-// export function get(path: string) {
-//   return function (target: any, key: string, desc: PropertyDescriptor) {
-//     Reflect.defineMetadata("path", path, target, key);
-//     Reflect.defineMetadata("methods", "get", target, key);
-//   };
-// }
-// export function post(path: string) {
-//   return function (target: any, key: string, desc: PropertyDescriptor) {
-//     Reflect.defineMetadata("path", path, target, key);
-//     Reflect.defineMetadata("methods", "post", target, key);
-//   };
-// }
-//We are refactoring the code ? NOPE! we are refactoring the design and the content and the code!
-//Specifically, we create factory decorator
-//https://www.typescriptlang.org/docs/handbook/decorators.html
 function routeBinder(method) {
     // method: get/put/post/or patch
     return function (path) {
         // path = '/login'
         return function (target, key, desc) {
+            //PropertyDescriptor : can be an Object that having writable, configurable,enumrable and VALUE properties
+            //Value Property reference to actual some functions
+            //interface tells us that if there is any value, you have to satisfy the Request Handler from Express
+            //look at examples in loginController.ts
             Reflect.defineMetadata(MetadataKeys_1.MetadataKeys.path, path, target, key); // key === 'getLogin'
             Reflect.defineMetadata(MetadataKeys_1.MetadataKeys.method, method, target, key);
             // this indicate the method that we want this router handler to assign into router
