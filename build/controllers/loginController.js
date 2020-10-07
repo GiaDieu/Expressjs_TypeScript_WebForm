@@ -18,6 +18,11 @@ var decorators_1 = require("./decorators");
 var LoginController = /** @class */ (function () {
     function LoginController() {
     }
+    //Argument of type 'TypedPropertyDescriptor<(a: number, b: number) => number>' is not assignable to parameter of type 'routeHandlerDescriptor'.
+    // @get("/")
+    // add(a: number, b: number): number {
+    //   return a + b;
+    // }
     // @use(logger)
     LoginController.prototype.getLogin = function (req, res) {
         res.send("\n          <form method=\"POST\">\n              <div>\n                  <label>Email</label>\n                  <input name=\"email\" type=\"email\" />\n              </div>\n              <div>\n                  <label>Password</label>\n                  <input name=\"password\" type=\"password\" />\n              </div>\n              <button>Submit</button>\n          </form>\n        ");
