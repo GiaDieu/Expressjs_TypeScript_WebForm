@@ -8,6 +8,12 @@ import { get, controller, bodyValidator, post } from "./decorators";
 //trial for middleware logger
 @controller("/auth")
 class LoginController {
+  //Argument of type 'TypedPropertyDescriptor<(a: number, b: number) => number>' is not assignable to parameter of type 'routeHandlerDescriptor'.
+  // @get("/")
+  // add(a: number, b: number): number {
+  //   return a + b;
+  // }
+
   @get("/login") //(alias) get(path: string): (target: any, key: string, desc: PropertyDescriptor) => void
   // @use(logger)
   getLogin(req: Request, res: Response): void {
